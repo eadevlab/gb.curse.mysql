@@ -174,28 +174,49 @@ for model in [
 
 # Result class
 class Preparer:
+    """
+    Класс для предобработки датафрэима.
+    """
     def __fixes(self, ds: pd.DataFrame) -> pd.DataFrame:
+        """
+        Различные исправления датасета, запонение пропусков
+        :param ds: Исходный датасет
+        :return: pd.DataFrame
+        """
         def fix_square(row):
+            """
+            Фикс общей площади
+            :param row:
+            :return: pd.Series
+            """
             if row['Square'] < row['LifeSquare'] + row['KitchenSquare']:
                 row['Square'] = row['LifeSquare'] + row['KitchenSquare']
             return row
 
         def fix_house_year(row):
+            """
+            Фикс года постройки дома
+            :param row:
+            :return: pd.Series
+            """
             house_year = row['HouseYear']
             try:
                 house_year = datetime.datetime.strptime(str(int(house_year)), '%Y%d%m').year
             except ValueError:
                 house_year = datetime.datetime.now().year
-
             row['HouseYear'] = house_year
             return row
 
         def fix_rooms(row):
+            """
+            Фикс количества комнат
+            :param row:
+            :return:
+            """
             row['Rooms'] = rooms_min_max_sq.loc[
                 (row['Square'] > rooms_min_max_sq['min_sq']) & (row['Square'] < rooms_min_max_sq['max_sq'])].iloc[0][
                 'Rooms']
             return row
-
         rooms_min_max_sq = ds.loc[(ds['Rooms'] <= 6) & (ds['Rooms'] > 0)].groupby('Rooms').agg(
             min_sq=('Square', np.min),
             max_sq=('Square', np.max),
@@ -205,4 +226,9 @@ class Preparer:
         return ds
 
     def transform(self, ds: pd.DataFrame) -> pd.DataFrame:
+        """
+        Трансвормирование датасета
+        :param ds:
+        :return: pd.DataFrame
+        """
         return ds
