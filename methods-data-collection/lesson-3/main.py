@@ -56,6 +56,7 @@ class SiteParser(BsParser):
         for req_key in self.req_keys:
             valid &= req_key in settings
         return valid
+
     def parse(self) -> None:
         """
         Запуск парсера
@@ -108,6 +109,7 @@ class SiteParser(BsParser):
                     yield self.__prepare_url(leaf[settings['url_key']])
         else:
             return []
+
     def __leaf_save(self, provider):
         """
         Сохранение листа в csv
@@ -131,6 +133,8 @@ class SiteParser(BsParser):
 
     def get_pandas(self):
         return pd.read_csv(self.output)
+
+
 class ProductParserProvider(BsParser):
     """
     Класс для парсинга товара
@@ -146,6 +150,7 @@ class ProductParserProvider(BsParser):
     @classmethod
     def csv_head(cls):
         return ['TITLE','URL','RATE','PARAMS']
+
     def asdict(self):
         """
         Получение
@@ -167,6 +172,7 @@ class ProductParserProvider(BsParser):
             data['rate'],
             '|'.join(['%s: %.2f' % (k,v) for k,v in data['params'].items()])
         ]
+
     def __parse(self):
         """
         Парсинг данных
@@ -189,6 +195,7 @@ class ProductParserProvider(BsParser):
             'rate':rate,
             'params': params
         }
+
 
 # Настройки парсера
 PARSER_SETTING = {
