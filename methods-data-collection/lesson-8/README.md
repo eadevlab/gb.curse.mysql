@@ -32,4 +32,4 @@
 ### База данных MongoDB
 ![screen-1.png](results%2Fscreen-1.png)
 ### Пример консольного вывода
-![scr-2.png](results%2Fscr-2.png)
+![screen-2.png](results%2Fscreen-2.png)
