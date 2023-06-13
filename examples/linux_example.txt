@@ -1,0 +1,22 @@
+test@ubuntu20-test2:~$ uname
+Linux
+test@ubuntu20-test2:~$ uname -a
+Linux ubuntu20-test2 5.4.0-146-generic #163-Ubuntu SMP Fri Mar 17 18:26:02 UTC 2          
+023 x86_64 x86_64 x86_64 GNU/Linux
+test@ubuntu20-test2:~$ hostnamectl
+    Static hostname: ubuntu20-test2
+          Icon name: computer-vm
+            Chassis: vm
+         Machine ID: 60195cb5ba9041c4a37b3e7a93c2964c
+            Boot ID: b4cf6e454b754353b430bb8127a61a49
+     Virtualization: microsoft
+   Operating System: Ubuntu 20.04.6 LTS
+             Kernel: Linux 5.4.0-146-generic
+       Architecture: x86-64
+test@ubuntu20-test2:~$ lsb_release -a
+ No LSB modules are available.
+ Distributor ID: Ubuntu
+ Description:    Ubuntu 20.04.6 LTS
+ Release:        20.04
+ Codename:       focal
+test@ubuntu20-test2:~$
