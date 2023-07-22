@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.8.17
 
 LABEL maintainer="no-mail@do_not.want_to"
 
@@ -7,9 +7,9 @@ COPY . /app
 WORKDIR /app
 
 RUN pip install -r requirements.txt
-RUN python ./models/build.py
+RUN python ./app/build.py
 
-EXPOSE 8180
+EXPOSE 8080
 
 VOLUME /app/models
 
